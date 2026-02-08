@@ -147,10 +147,10 @@ async function fetchCountries() {
 fetchCountries();
 countrySelect.addEventListener('change', (e) => validateField(e.target));
 
-// Add event listeners for gender radio buttons
 document.querySelectorAll('input[name="gender"]').forEach(radio => {
     radio.addEventListener('change', () => {
         const genderInput = document.querySelector('input[name="gender"]');
         validateField(genderInput);
     });
 });
+
