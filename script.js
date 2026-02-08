@@ -12,6 +12,7 @@ const config = {
     password:  { reg: /.{8,}/ },
     address:   { validate: val => val.trim().length >= 10 },
     birthdate: { validate: val => val.trim().length > 0 },
+    gender:    { validate: () => [...document.getElementsByName('gender')].some(r => r.checked) },
     confirmPassword: { validate: (val) => val === form.password.value && val !== '' },
     country:   { validate: val => val !== '' },
     terms:     { validate: () => form.terms.checked }
@@ -52,15 +53,36 @@ function validateField(input) {
 
 function toggleError(input, name, isValid, isSubmit = false) {
     const errSpan = document.getElementById(name + 'Error');
-    const label = document.querySelector(`label[for="${input.id}"]`);
     
     input.classList.toggle('error', !isValid && (isSubmit || input.value !== '' || name === 'country'));
     input.classList.toggle('success', isValid);
     
-    if (label) {
-        const requiredSpan = label.querySelector('.required');
-        if (requiredSpan) {
-            requiredSpan.style.display = isValid ? 'none' : 'inline';
+    // Handle regular input fields with ids
+    if (input.id) {
+        const label = document.querySelector(`label[for="${input.id}"]`);
+        if (label) {
+            const requiredSpan = label.querySelector('.required');
+            if (requiredSpan) {
+                requiredSpan.style.display = isValid ? 'none' : 'inline';
+            }
+        }
+    }
+    
+    // Handle gender radio group - it doesn't have an id
+    if (name === 'gender') {
+        const radioGroup = document.querySelector('.radio-group');
+        if (radioGroup) {
+            const parentFormGroup = radioGroup.closest('.form-group');
+            if (parentFormGroup) {
+                const genderLabel = parentFormGroup.querySelector('label:first-child');
+                if (genderLabel) {
+                    const requiredSpan = genderLabel.querySelector('.required');
+                    if (requiredSpan) {
+                        const genderChecked = [...document.getElementsByName('gender')].some(r => r.checked);
+                        requiredSpan.style.display = genderChecked ? 'none' : 'inline';
+                    }
+                }
+            }
         }
     }
     
@@ -123,3 +145,11 @@ async function fetchCountries() {
 }
 fetchCountries();
 countrySelect.addEventListener('change', (e) => validateField(e.target));
+
+// Add event listeners for gender radio buttons
+document.querySelectorAll('input[name="gender"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+        const genderInput = document.querySelector('input[name="gender"]');
+        validateField(genderInput);
+    });
+});
