@@ -57,7 +57,6 @@ function toggleError(input, name, isValid, isSubmit = false) {
     input.classList.toggle('error', !isValid && (isSubmit || input.value !== '' || name === 'country'));
     input.classList.toggle('success', isValid);
     
-    // Handle regular input fields with ids
     if (input.id) {
         const label = document.querySelector(`label[for="${input.id}"]`);
         if (label) {
@@ -68,7 +67,6 @@ function toggleError(input, name, isValid, isSubmit = false) {
         }
     }
     
-    // Handle gender radio group - it doesn't have an id
     if (name === 'gender') {
         const radioGroup = document.querySelector('.radio-group');
         if (radioGroup) {
@@ -153,4 +151,3 @@ document.querySelectorAll('input[name="gender"]').forEach(radio => {
         validateField(genderInput);
     });
 });
-
