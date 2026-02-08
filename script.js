@@ -52,9 +52,17 @@ function validateField(input) {
 
 function toggleError(input, name, isValid, isSubmit = false) {
     const errSpan = document.getElementById(name + 'Error');
+    const label = document.querySelector(`label[for="${input.id}"]`);
     
     input.classList.toggle('error', !isValid && (isSubmit || input.value !== '' || name === 'country'));
     input.classList.toggle('success', isValid);
+    
+    if (label) {
+        const requiredSpan = label.querySelector('.required');
+        if (requiredSpan) {
+            requiredSpan.style.display = isValid ? 'none' : 'inline';
+        }
+    }
     
     if (errSpan) errSpan.classList.toggle('show', !isValid && (isSubmit || input.value !== '' || name === 'country' || name === 'terms'));
 }
