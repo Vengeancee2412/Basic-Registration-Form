@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        <p class="subtitle">Please fill in your personal information</p>
+
+        <form id="registrationForm" novalidate>
+            <div class="row">
+                <div class="form-group">
+                    <label for="firstName">First Name <span class="required">*</span></label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Enter first name">
+                    <span class="error-message" id="firstNameError">Please enter a valid first name (letters only)</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name <span class="required">*</span></label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Enter last name">
+                    <span class="error-message" id="lastNameError">Please enter a valid last name (letters only)</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" placeholder="example@email.com">
+                <span class="error-message" id="emailError">Please enter a valid email address</span>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="phone">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="123-456-7890">
+                    <span class="error-message" id="phoneError">Please enter a valid phone number (10-15 digits)</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthdate">Date of Birth <span class="required">*</span></label>
+                    <input type="date" id="birthdate" name="birthdate">
+                    <span class="error-message" id="birthdateError">Please select your date of birth</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Gender <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="male"> Male</label>
+                    <label><input type="radio" name="gender" value="female"> Female</label>
+                    <label><input type="radio" name="gender" value="other"> Other</label>
+                </div>
+                <span class="error-message" id="genderError">Please select your gender</span>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address <span class="required">*</span></label>
+                <textarea id="address" name="address" placeholder="Enter your complete address"></textarea>
+                <span class="error-message" id="addressError">Please enter your address</span>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="city">City <span class="required">*</span></label>
+                    <input type="text" id="city" name="city" placeholder="Enter city">
+                    <span class="error-message" id="cityError">Please enter a valid city name (letters only)</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="zipcode">ZIP Code <span class="required">*</span></label>
+                    <input type="text" id="zipcode" name="zipcode" placeholder="12345">
+                    <span class="error-message" id="zipcodeError">Please enter a valid ZIP code (3-10 digits)</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="country">Country <span class="required">*</span></label>
+                <select id="country" name="country">
+                    <option value="">Select Country</option>
+                    </select>
+                <span class="error-message" id="countryError">Please select your country</span>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username <span class="required">*</span></label>
+                <input type="text" id="username" name="username" placeholder="Create a username">
+                <span class="error-message" id="usernameError">Username must be 4-20 characters (letters, numbers, underscore)</span>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="password">Password <span class="required">*</span></label>
+                    <input type="password" id="password" name="password" placeholder="Create a password">
+                    <span class="error-message" id="passwordError">Password must be at least 8 characters</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password <span class="required">*</span></label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password">
+                    <span class="error-message" id="confirmPasswordError">Passwords do not match</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" id="terms" name="terms">
+                        I agree to the Terms and Conditions <span class="required">*</span>
+                    </label>
+                </div>
+                <span class="error-message" id="termsError">You must agree to the terms and conditions</span>
+            </div>
+
+            <button type="submit" class="btn-submit">Register</button>
+        </form>
+
+        <div class="login-link">
+            Already have an account? <span class="link">Login</span>
+        </div>
+    </div>
+
+    <div class="success-modal" id="successModal">
+        <div class="modal-content">
+            <div class="success-icon">✓</div>
+            <h2>Registration Successful!</h2>
+            <p>Your account has been created successfully.</p>
+            <button class="btn-close" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
