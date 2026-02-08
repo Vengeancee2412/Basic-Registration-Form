@@ -12,7 +12,7 @@ const config = {
     password:  { reg: /.{8,}/ },
     address:   { validate: val => val.trim().length >= 10 },
     birthdate: { validate: val => val.trim().length > 0 },
-    gender:    { validate: () => [...document.getElementsByName('gender')].some(r => r.checked) },
+        gender:    { validate: () => [...document.getElementsByName('gender')].some(r => r.checked) },
     confirmPassword: { validate: (val) => val === form.password.value && val !== '' },
     country:   { validate: val => val !== '' },
     terms:     { validate: () => form.terms.checked }
@@ -94,6 +94,7 @@ form.addEventListener('submit', e => {
     let isFormValid = true;
 
     Object.keys(config).forEach(key => {
+            if (key === 'gender') return;
         const input = form[key];
         const rule = config[key];
         const val = input.value.trim();
