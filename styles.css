@@ -75,7 +75,6 @@ textarea {
 
 input:focus, select:focus, textarea:focus {
     outline: none;
-    border-color: #667eea;
 }
 
 input.error, select.error, textarea.error {
